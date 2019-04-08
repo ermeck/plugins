@@ -10,3 +10,4 @@ function i2g_check_field($column) {
     }
     return false;
 }
+
