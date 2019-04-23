@@ -74,7 +74,24 @@ function i2g_title ($title) {
     elseif ( is_category() ) {
         // ПОЛУЧАЕМ ID КАТЕГОРИИ
         $cat_id = get_query_var( 'cat' );
-        $title = array('hi', 'there');
+        // получаем данные категории по id ($cat - объект)
+        $cat = get_category($cat_id);
+        // ЕСЛИ ЕСТЬ РОДИТЕЛЬСКАЯ
+        if ($cat->parent) {
+            // получаем строку родительских категорий через разделитель
+            // обрезаем ненужное с помощью rtrim, здесь ненужное - $sep
+            $categories = rtrim(get_category_parents( $cat_id, false, $sep), $sep);
+            // обращаем строку в массив
+            $categories = explode($sep, $categories);
+            // В наш массив $title получаем перевернутый массив
+            $title = array_reverse($categories);
+            // добавляем в массив название сайта
+            $title[] = $site;
+        } else {
+            // ЕСЛИ НЕТ
+            // формируем массив - название категории, название сайта
+            $title = array($cat->name, $site);
+        }
     }
 
     /**
