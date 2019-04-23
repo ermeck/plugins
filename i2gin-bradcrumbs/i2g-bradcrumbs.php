@@ -71,8 +71,10 @@ function i2g_title ($title) {
     /**
      * КАТЕГОРИЯ
      */
-    elseif (condition) {
-        # code...
+    elseif ( is_category() ) {
+        // ПОЛУЧАЕМ ID КАТЕГОРИИ
+        $cat_id = get_query_var( 'cat' );
+        $title = array('hi', 'there');
     }
 
     /**
