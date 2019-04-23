@@ -71,7 +71,9 @@ function i2g_title ($title) {
     /**
      * КАТЕГОРИЯ
      */
-    
+    elseif (condition) {
+        # code...
+    }
 
     /**
      * АРХИВ
