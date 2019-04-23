@@ -95,6 +95,23 @@ function i2g_title ($title) {
     }
 
     /**
+     * ЗАПИСЬ
+     */
+    elseif ( is_single() ) {
+        // массив данных о категориях
+        $category = get_the_category();
+        // ID категории
+        $cat_id = $category[0]->cat_ID;
+        // цепочку категорий получаем как в в предыдущем куске кода для категорий
+        $categories = rtrim(get_category_parents( $cat_id, false, $sep), $sep);
+        $categories = explode($sep, $categories);
+        // только добавляем название записи
+        $categories[] = get_the_title();
+        $title = array_reverse($categories);
+        $title[] = $site;
+    }
+
+    /**
      * АРХИВ
      */
     elseif ( is_archive() ) {
